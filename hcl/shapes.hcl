@@ -1,29 +1,8 @@
-# --- shapes.hcl usage ---
-# drawj2d -W 157 -H 209 -T rmn shapes.hcl 
+source proc_mylineto.hcl
+source proc_myrectangle.hcl
 
-# draw lines as short segments (.5 mm)
-proc mylineto {toX toY} {
-    set maxL [mm 0.5]
-    set from [here]
-    set totL [geom.length $from "$toX $toY"]
-    set n [expr ceiling( $totL / $maxL)]
-    set i 1
-    while {<= $i $n} {
-        lineto [geom.online $from "$toX $toY" [expr $i / $n]]
-        incr $i
-    }
-    assert "$i - 1 == $n"
-}
-
-# draw rectangles using lines as short segments
-proc myrectangle {dx dy} {
-    set fromX [X [here]]
-    set fromY [Y [here]]
-    mylineto [+ $fromX $dx] $fromY
-    mylineto [+ $fromX $dx] [+ $fromY $dy]
-    mylineto $fromX         [+ $fromY $dy]
-    mylineto $fromX         $fromY
-}
+set color [lindex $argv 0]
+pen $color
 
 # --- outer box ---
 pen 0.2; offset 15 5; myrectangle 137 199
