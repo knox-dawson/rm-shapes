@@ -1,3 +1,6 @@
+# --- shapes.hcl usage ---
+# drawj2d -W 157 -H 209 -T rmn shapes.hcl [black|gray|red|blue]
+
 source proc_mylineto.hcl
 source proc_myrectangle.hcl
 
