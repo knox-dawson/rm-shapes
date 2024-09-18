@@ -1,33 +1,36 @@
-# Draw an octagon at the specified center and radius
-proc octagon_vertical {cX cY rL} {
+# Draw an octagon with radius, current location is center
+proc octagon_vertical {radius} {
+
+    set cX [X [here]]
+    set cY [Y [here]]
 
     # Calculate the angle between vertices (in radians)
     set angle45 [expr 45 * (3.14159 / 180)]
 
     # Calculate the vertices of the octagon manually
-    set x0 [expr $cX + $rL]
+    set x0 [expr $cX + $radius]
     set y0 $cY
 
-    set x1 [expr $cX + $rL * [cos $angle45]]
-    set y1 [expr $cY + $rL * [sin $angle45]]
+    set x1 [expr $cX + $radius * [cos $angle45]]
+    set y1 [expr $cY + $radius * [sin $angle45]]
 
-    set x2 [expr $cX + $rL * [cos [expr 2 * $angle45]]]
-    set y2 [expr $cY + $rL * [sin [expr 2 * $angle45]]]
+    set x2 [expr $cX + $radius * [cos [expr 2 * $angle45]]]
+    set y2 [expr $cY + $radius * [sin [expr 2 * $angle45]]]
 
-    set x3 [expr $cX + $rL * [cos [expr 3 * $angle45]]]
-    set y3 [expr $cY + $rL * [sin [expr 3 * $angle45]]]
+    set x3 [expr $cX + $radius * [cos [expr 3 * $angle45]]]
+    set y3 [expr $cY + $radius * [sin [expr 3 * $angle45]]]
 
-    set x4 [expr $cX + $rL * [cos [expr 4 * $angle45]]]
-    set y4 [expr $cY + $rL * [sin [expr 4 * $angle45]]]
+    set x4 [expr $cX + $radius * [cos [expr 4 * $angle45]]]
+    set y4 [expr $cY + $radius * [sin [expr 4 * $angle45]]]
 
-    set x5 [expr $cX + $rL * [cos [expr 5 * $angle45]]]
-    set y5 [expr $cY + $rL * [sin [expr 5 * $angle45]]]
+    set x5 [expr $cX + $radius * [cos [expr 5 * $angle45]]]
+    set y5 [expr $cY + $radius * [sin [expr 5 * $angle45]]]
 
-    set x6 [expr $cX + $rL * [cos [expr 6 * $angle45]]]
-    set y6 [expr $cY + $rL * [sin [expr 6 * $angle45]]]
+    set x6 [expr $cX + $radius * [cos [expr 6 * $angle45]]]
+    set y6 [expr $cY + $radius * [sin [expr 6 * $angle45]]]
 
-    set x7 [expr $cX + $rL * [cos [expr 7 * $angle45]]]
-    set y7 [expr $cY + $rL * [sin [expr 7 * $angle45]]]
+    set x7 [expr $cX + $radius * [cos [expr 7 * $angle45]]]
+    set y7 [expr $cY + $radius * [sin [expr 7 * $angle45]]]
 
     # Move to the first vertex
     moveto $x0 $y0

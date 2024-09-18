@@ -12,8 +12,11 @@ proc mylineto {toX toY} {
     assert "$i - 1 == $n"
 }
 
-# Draw an octagon at the specified center, radius, and rotation angle
-proc octagon_horizontal {cX cY rL} {
+# Draw an octagon with radius, current location is center
+proc octagon_horizontal {radius} {
+
+    set cX [X [here]]
+    set cY [Y [here]]
 
     # Calculate the angle between vertices (in radians)
     set angle45 [expr 45 * (3.14159 / 180)]
@@ -22,29 +25,29 @@ proc octagon_horizontal {cX cY rL} {
     set rotation [expr 22.5 * (3.14159 / 180)]
 
     # Calculate the vertices of the rotated octagon manually
-    set x0 [expr $cX + $rL * [cos $rotation]]
-    set y0 [expr $cY + $rL * [sin $rotation]]
+    set x0 [expr $cX + $radius * [cos $rotation]]
+    set y0 [expr $cY + $radius * [sin $rotation]]
 
-    set x1 [expr $cX + $rL * [cos [expr $rotation + $angle45]]]
-    set y1 [expr $cY + $rL * [sin [expr $rotation + $angle45]]]
+    set x1 [expr $cX + $radius * [cos [expr $rotation + $angle45]]]
+    set y1 [expr $cY + $radius * [sin [expr $rotation + $angle45]]]
 
-    set x2 [expr $cX + $rL * [cos [expr $rotation + 2 * $angle45]]]
-    set y2 [expr $cY + $rL * [sin [expr $rotation + 2 * $angle45]]]
+    set x2 [expr $cX + $radius * [cos [expr $rotation + 2 * $angle45]]]
+    set y2 [expr $cY + $radius * [sin [expr $rotation + 2 * $angle45]]]
 
-    set x3 [expr $cX + $rL * [cos [expr $rotation + 3 * $angle45]]]
-    set y3 [expr $cY + $rL * [sin [expr $rotation + 3 * $angle45]]]
+    set x3 [expr $cX + $radius * [cos [expr $rotation + 3 * $angle45]]]
+    set y3 [expr $cY + $radius * [sin [expr $rotation + 3 * $angle45]]]
 
-    set x4 [expr $cX + $rL * [cos [expr $rotation + 4 * $angle45]]]
-    set y4 [expr $cY + $rL * [sin [expr $rotation + 4 * $angle45]]]
+    set x4 [expr $cX + $radius * [cos [expr $rotation + 4 * $angle45]]]
+    set y4 [expr $cY + $radius * [sin [expr $rotation + 4 * $angle45]]]
 
-    set x5 [expr $cX + $rL * [cos [expr $rotation + 5 * $angle45]]]
-    set y5 [expr $cY + $rL * [sin [expr $rotation + 5 * $angle45]]]
+    set x5 [expr $cX + $radius * [cos [expr $rotation + 5 * $angle45]]]
+    set y5 [expr $cY + $radius * [sin [expr $rotation + 5 * $angle45]]]
 
-    set x6 [expr $cX + $rL * [cos [expr $rotation + 6 * $angle45]]]
-    set y6 [expr $cY + $rL * [sin [expr $rotation + 6 * $angle45]]]
+    set x6 [expr $cX + $radius * [cos [expr $rotation + 6 * $angle45]]]
+    set y6 [expr $cY + $radius * [sin [expr $rotation + 6 * $angle45]]]
 
-    set x7 [expr $cX + $rL * [cos [expr $rotation + 7 * $angle45]]]
-    set y7 [expr $cY + $rL * [sin [expr $rotation + 7 * $angle45]]]
+    set x7 [expr $cX + $radius * [cos [expr $rotation + 7 * $angle45]]]
+    set y7 [expr $cY + $radius * [sin [expr $rotation + 7 * $angle45]]]
 
     # Move to the first vertex
     moveto $x0 $y0
@@ -62,5 +65,6 @@ proc octagon_horizontal {cX cY rL} {
     mylineto $x0 $y0
 }
 
-# Call the procedure to draw a rotated octagon
-octagon_horizontal 40 40 10
+moveto 40 40
+pen 2
+octagon_horizontal 10

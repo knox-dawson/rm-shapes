@@ -1,5 +1,8 @@
-# Draw a hexagon at the specified center, radius, and rotation angle
-proc hexagon {cX cY rL} {
+# Draw a hexagon with radius, current location is center
+proc hexagon_vertical {radius} {
+
+    set cX [X [here]]
+    set cY [Y [here]]
 
     # Calculate the angle between vertices (in radians)
     set angle60 [expr 60 * (3.14159 / 180)]
@@ -8,23 +11,23 @@ proc hexagon {cX cY rL} {
     set rotation [expr 30 * (3.14159 / 180)]
 
     # Calculate the vertices of the rotated hexagon manually
-    set x0 [expr $cX + $rL * [cos $rotation]]
-    set y0 [expr $cY + $rL * [sin $rotation]]
+    set x0 [expr $cX + $radius * [cos $rotation]]
+    set y0 [expr $cY + $radius * [sin $rotation]]
 
-    set x1 [expr $cX + $rL * [cos [expr $rotation + $angle60]]]
-    set y1 [expr $cY + $rL * [sin [expr $rotation + $angle60]]]
+    set x1 [expr $cX + $radius * [cos [expr $rotation + $angle60]]]
+    set y1 [expr $cY + $radius * [sin [expr $rotation + $angle60]]]
 
-    set x2 [expr $cX + $rL * [cos [expr $rotation + 2 * $angle60]]]
-    set y2 [expr $cY + $rL * [sin [expr $rotation + 2 * $angle60]]]
+    set x2 [expr $cX + $radius * [cos [expr $rotation + 2 * $angle60]]]
+    set y2 [expr $cY + $radius * [sin [expr $rotation + 2 * $angle60]]]
 
-    set x3 [expr $cX + $rL * [cos [expr $rotation + 3 * $angle60]]]
-    set y3 [expr $cY + $rL * [sin [expr $rotation + 3 * $angle60]]]
+    set x3 [expr $cX + $radius * [cos [expr $rotation + 3 * $angle60]]]
+    set y3 [expr $cY + $radius * [sin [expr $rotation + 3 * $angle60]]]
 
-    set x4 [expr $cX + $rL * [cos [expr $rotation + 4 * $angle60]]]
-    set y4 [expr $cY + $rL * [sin [expr $rotation + 4 * $angle60]]]
+    set x4 [expr $cX + $radius * [cos [expr $rotation + 4 * $angle60]]]
+    set y4 [expr $cY + $radius * [sin [expr $rotation + 4 * $angle60]]]
 
-    set x5 [expr $cX + $rL * [cos [expr $rotation + 5 * $angle60]]]
-    set y5 [expr $cY + $rL * [sin [expr $rotation + 5 * $angle60]]]
+    set x5 [expr $cX + $radius * [cos [expr $rotation + 5 * $angle60]]]
+    set y5 [expr $cY + $radius * [sin [expr $rotation + 5 * $angle60]]]
 
     # Move to the first vertex
     moveto $x0 $y0

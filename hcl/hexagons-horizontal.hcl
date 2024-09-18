@@ -15,31 +15,34 @@ proc mylineto {toX toY} {
     assert "$i - 1 == $n"
 }
 
-# draw hexagon at specified center and radius
-proc hexagon {cX cY rL} {
+# draw hexagon with radius, current location is center
+proc hexagon_horizontal {radius} {
+
+    set cX [X [here]]
+    set cY [Y [here]]
 
     # Calculate the angle between vertices (in radians)
     set angle60 [expr 60 * (3.14159 / 180)]
 
     # Calculate the vertices of the hexagon manually
-    set x0 [expr $cX + $rL]
+    set x0 [expr $cX + $radius]
     set y0 $cY
 
-    set x1 [expr $cX + $rL * [cos $angle60]]
-    set y1 [expr $cY + $rL * [sin $angle60]]
+    set x1 [expr $cX + $radius * [cos $angle60]]
+    set y1 [expr $cY + $radius * [sin $angle60]]
 
     # TODO This should be in a loop
-    set x2 [expr $cX + $rL * [cos [expr 2 * $angle60]]]
-    set y2 [expr $cY + $rL * [sin [expr 2 * $angle60]]]
+    set x2 [expr $cX + $radius * [cos [expr 2 * $angle60]]]
+    set y2 [expr $cY + $radius * [sin [expr 2 * $angle60]]]
 
-    set x3 [expr $cX + $rL * [cos [expr 3 * $angle60]]]
-    set y3 [expr $cY + $rL * [sin [expr 3 * $angle60]]]
+    set x3 [expr $cX + $radius * [cos [expr 3 * $angle60]]]
+    set y3 [expr $cY + $radius * [sin [expr 3 * $angle60]]]
 
-    set x4 [expr $cX + $rL * [cos [expr 4 * $angle60]]]
-    set y4 [expr $cY + $rL * [sin [expr 4 * $angle60]]]
+    set x4 [expr $cX + $radius * [cos [expr 4 * $angle60]]]
+    set y4 [expr $cY + $radius * [sin [expr 4 * $angle60]]]
 
-    set x5 [expr $cX + $rL * [cos [expr 5 * $angle60]]]
-    set y5 [expr $cY + $rL * [sin [expr 5 * $angle60]]]
+    set x5 [expr $cX + $radius * [cos [expr 5 * $angle60]]]
+    set y5 [expr $cY + $radius * [sin [expr 5 * $angle60]]]
 
     # Move to the first vertex
     moveto $x0 $y0
@@ -59,10 +62,6 @@ proc hexagon {cX cY rL} {
 pen 0.2; offset 15 5; rectangle 137 199
 
 # --- hexagons ---
-pen 1.2; hexagon 20 50 10
-pen 1.0; hexagon 20 76 10
-pen 0.8; hexagon 20 102 10
-pen 0.6; hexagon 20 128 10
-pen 0.4; hexagon 20 154 10
-pen 0.2; hexagon 20 180 10
+moveto 20 50
+pen 1.2; hexagon_horizontal 10
 
