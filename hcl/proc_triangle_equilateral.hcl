@@ -1,4 +1,4 @@
-# Draw an equilateral triangle given a "radius", current location is center
+# Draw an equilateral triangle given a "radius", current location is centroid
 proc triangle_equilateral {radius} {
     set cx [X [here]]
     set cy [Y [here]]
