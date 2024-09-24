@@ -1,17 +1,37 @@
 #!/usr/bin/env ruby
 
 charset = ARGV[0] || 'arrows'
+spacing = ARGV[1] || nil
 
 columns = 4
 
 def charsets
-  { 'arrows' => 0x2190 .. 0x21FF,
-    'symbols' => 0x2B00 .. 0x2Bff,
-    'symbols2' => [ (0x2013 .. 0x2028).to_a, (0x2030 .. 0x204a).to_a ].flatten,
-    'number_forms' => 0x2150 .. 0x218f,
-    'math1' => 0x2200 .. 0x227f,
-    'math2' => 0x2280 .. 0x22ff,
-    'selected_symbols' =>
+  { 'arrows'                 => 0x2190 .. 0x21FF,
+    'number_forms'           => 0x2150 .. 0x218f,
+    'math1'                  => 0x2200 .. 0x223b,
+    'math2'                  => 0x223c .. 0x227f,
+    'math3'                  => 0x2280 .. 0x22bf,
+    'math4'                  => 0x22c0 .. 0x22ff,
+    'technical1'             => 0x2300 .. 0x237f,
+    'technical2'             => 0x2380 .. 0x23ff,
+    'enclosed_alphanumeric1' => 0x2460 .. 0x24af,
+    'enclosed_alphanumeric2' => 0x24b0 .. 0x24ff,
+    'geometric'              => 0x25a0 .. 0x25ff,
+    'misc_symbols1'          => 0x2600 .. 0x267f,
+    'misc_symbols2'          => 0x2680 .. 0x26ff,
+    'legacy_computing1'      => 0x1fb00 .. 0x1fb3f,
+    'legacy_computing2'      => 0x1fb40 .. 0x1fb7f,
+    'legacy_computing3'      => 0x1fb80 .. 0x1fbbf,
+    'legacy_computing4'      => [(0x1fbc0 .. 0x1fbca).to_a, (0x1fbf0 .. 0x1fbf9).to_a].flatten,
+    'dingbats1'              => 0x2700 .. 0x275f,
+    'dingbats2'              => 0x2760 .. 0x27bf,
+    'mahjong'                => 0x1f000 .. 0x1f02b,
+    'domino'                 => 0x1f030 .. 0x1f093,
+    'cards'                  => 0x1f0a0 .. 0x1f0f5,
+    'chess'                  => [(0x1fa00 .. 0x1fa53).to_a, (0x1fa60 .. 0x1fa6d).to_a].flatten,
+    'symbols1'               => 0x2B00 .. 0x2Bff,
+    'symbols2'               => [(0x2013 .. 0x2028).to_a, (0x2030 .. 0x204a).to_a].flatten,
+    'selected_symbols'       =>
     [ 0x2b05, 0x2b06, 0x2b07, 0x2b08, 0x2b09, 0x2b0a, 0x2b0b, 0x2b0c, 0x2b0d, 0x2b0e, 0x2b0f,
       0x2b10, 0x2b11, 0x2b1b, 0x2b1c, 0x2b1d, 0x2b1e, 0x2b1f, 0x2b20, 0x2b21, 0x2b22, 0x2b23,
       0x2b24, 0x2b25, 0x2b26, 0x2b27, 0x2b28, 0x2b29, 0x2b2a, 0x2b2b, 0x2b2c, 0x2b2d, 0x2b2e,
@@ -34,6 +54,9 @@ end
 
 unicode_chars(charset).each_slice(columns) do |row|
   puts row.join("   ")
+  if spacing
+    print "\n"
+  end
 end
 
 
