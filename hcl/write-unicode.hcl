@@ -1,4 +1,4 @@
-# drawj2d -Tscr -W157 -H209 -X10 -Y10 write-unicode.hcl textfile.txt
+# drawj2d -Tscr -W157 -H209 -X15 -Y10 write-unicode.hcl textfile.txt
 
 if {< $argc 1} {
   puts {usage: drawj2d write.hcl textfile}
