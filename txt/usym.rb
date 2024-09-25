@@ -1,34 +1,40 @@
 #!/usr/bin/env ruby
 
-charset = ARGV[0] || 'arrows'
-spacing = ARGV[1] || nil
-
-columns = 4
+charset     = ARGV[0] || 'arrows'
+hide_labels = ARGV[1] || nil
+spacing     = ARGV[2] || nil
 
 def charsets
   { 'arrows'                 => 0x2190 .. 0x21FF,
-    'number_forms'           => 0x2150 .. 0x218f,
+    'number_forms'           => 0x2150 .. 0x218b,
+    'math'                   => 0x2200 .. 0x22ff,
     'math1'                  => 0x2200 .. 0x223b,
     'math2'                  => 0x223c .. 0x227f,
     'math3'                  => 0x2280 .. 0x22bf,
     'math4'                  => 0x22c0 .. 0x22ff,
+    'technical'              => 0x2300 .. 0x23ff,
     'technical1'             => 0x2300 .. 0x237f,
     'technical2'             => 0x2380 .. 0x23ff,
+    'enclosed_alphanumeric'  => 0x2460 .. 0x24ff,
     'enclosed_alphanumeric1' => 0x2460 .. 0x24af,
     'enclosed_alphanumeric2' => 0x24b0 .. 0x24ff,
     'geometric'              => 0x25a0 .. 0x25ff,
+    'misc_symbols'           => 0x2600 .. 0x26ff,
     'misc_symbols1'          => 0x2600 .. 0x267f,
     'misc_symbols2'          => 0x2680 .. 0x26ff,
+    'legacy_computing'       => [(0x1fb00 .. 0x1fbbf).to_a, (0x1fbc0 .. 0x1fbca).to_a, (0x1fbf0 .. 0x1fbf9).to_a].flatten,
     'legacy_computing1'      => 0x1fb00 .. 0x1fb3f,
     'legacy_computing2'      => 0x1fb40 .. 0x1fb7f,
     'legacy_computing3'      => 0x1fb80 .. 0x1fbbf,
     'legacy_computing4'      => [(0x1fbc0 .. 0x1fbca).to_a, (0x1fbf0 .. 0x1fbf9).to_a].flatten,
+    'dingbats'               => 0x2700 .. 0x27bf,
     'dingbats1'              => 0x2700 .. 0x275f,
     'dingbats2'              => 0x2760 .. 0x27bf,
     'mahjong'                => 0x1f000 .. 0x1f02b,
     'domino'                 => 0x1f030 .. 0x1f093,
     'cards'                  => 0x1f0a0 .. 0x1f0f5,
     'chess'                  => [(0x1fa00 .. 0x1fa53).to_a, (0x1fa60 .. 0x1fa6d).to_a].flatten,
+    'symbols'                => [(0x2B00 .. 0x2Bff).to_a, (0x2013 .. 0x2028).to_a, (0x2030 .. 0x204a).to_a].flatten,
     'symbols1'               => 0x2B00 .. 0x2Bff,
     'symbols2'               => [(0x2013 .. 0x2028).to_a, (0x2030 .. 0x204a).to_a].flatten,
     'selected_symbols'       =>
@@ -45,18 +51,36 @@ def charsets
   }
 end
 
-def unicode_chars(charset)
+def unicode_chars_labels(charset)
   charsets[charset].map do |codepoint|
     character = [codepoint].pack("U*")
     "U+#{codepoint.to_s(16).upcase}: #{character}"
   end
 end
 
-unicode_chars(charset).each_slice(columns) do |row|
-  puts row.join("   ")
-  if spacing
-    print "\n"
+def unicode_chars(charset)
+  charsets[charset].map do |codepoint|
+    character = [codepoint].pack("U*")
   end
 end
+
+if hide_labels
+  columns = 8
+  unicode_chars(charset).each_slice(columns) do |row|
+    puts row.join("   ")
+    if spacing
+      print "\n"
+    end
+  end
+else
+  columns = 4
+  unicode_chars_labels(charset).each_slice(columns) do |row|
+    puts row.join("   ")
+    if spacing
+      print "\n"
+    end
+  end
+end
+
 
 

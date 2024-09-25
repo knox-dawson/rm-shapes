@@ -9,7 +9,8 @@ set textfile [lindex $argv 0]
 set color    [lindex $argv 1]
 set f        [open $textfile]
 
-font Lines bold 4
+# font Lines bold 4
+font Lines 6
 pen $color
 text {} 138
 while {$f hasnext} {
