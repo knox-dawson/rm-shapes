@@ -1,6 +1,6 @@
 # rm-shapes
 
-rM Shapes - Shapes to cut and paste into [reMarkable](https://remarkable.com/) tablet
+rM Shapes - Shapes to cut and paste into a [reMarkable](https://remarkable.com/) tablet
 
 All shapes were generated using [Drawj2d](https://drawj2d.sourceforge.io/).
 
