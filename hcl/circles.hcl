@@ -1,5 +1,7 @@
 # --- circles.hcl usage ---
-# drawj2d -W 157 -H 209 -T rmn circles.hcl [black|gray|red|blue] [0.22|0.34|0.43|0.65|1.11|1.84|2.9]
+# drawj2d -W 157 -H 209 -T rmn circles.hcl
+#   (color)     [black|gray|red|blue|green|yellow|cyan|magenta|pink|lightgray|lightgreen|lightyellow]
+#   (thickness) [0.22|0.34|0.43|0.65|1.11|1.84|2.9]
 
 set color     [lindex $argv 0]
 set thickness [lindex $argv 1]
